@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Evénements
+{% endblock %}
+
+{% block body %}
+	{% include "template_parts/_header.html.twig" %}
+	<main>
+		<header>Les filtres</header>
+		<section>
+			<article>
+				<div><img src="{{asset('images/couscous.png')}}" alt=""></div>
+				<div>
+					<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+				</div>
+			</article>
+			<article>
+				<div><img src="{{asset('images/couscous.png')}}" alt=""></div>
+				<div>
+					<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+				</div>
+			</article>
+			<article>
+				<div><img src="{{asset('images/couscous.png')}}" alt=""></div>
+				<div>
+					<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+				</div>
+			</article>
+		</section>
+	</main>
+	<footer>
+		<article></article>
+	</footer>
+{% endblock %}
