@@ -8,24 +8,22 @@
 	<main>
 		<header>Les filtres</header>
 		<section>
-			<article>
-				<div><img src="{{asset('images/couscous.png')}}" alt=""></div>
-				<div>
-					<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
-				</div>
-			</article>
-			<article>
-				<div><img src="{{asset('images/couscous.png')}}" alt=""></div>
-				<div>
-					<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
-				</div>
-			</article>
-			<article>
-				<div><img src="{{asset('images/couscous.png')}}" alt=""></div>
-				<div>
-					<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
-				</div>
-			</article>
+			{% for evenement in evenements %}
+				<article>
+					<div><img src={{evenement.imageSrc}} alt=""></div>
+					<div>
+						<h5>{{evenement.titre}}
+							le
+							{{evenement.date | date("d/m/Y")}}
+						</h5>
+						<p>{{evenement.lieu}}</p>
+						<p>{{evenement.description}}</p>
+						<p>Nombre de places total :
+							{{evenement.nbPlaces}}</p>
+					</div>
+				</article>
+			{% endfor %}
+
 		</section>
 	</main>
 	<footer>
