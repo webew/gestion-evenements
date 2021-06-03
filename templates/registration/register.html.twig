@@ -2,9 +2,28 @@
 
 {% block title %}Register{% endblock %}
 
+{% block javascripts %}
+{{ parent() }}
+<script src="https://www.google.com/recaptcha/api.js?render=6Ldc3gsbAAAAAJk9ENXpH_p0FyVvlmuVkSqE9gYM"></script>
+<script>
+    grecaptcha.ready(function () {
+        grecaptcha.execute('6Ldc3gsbAAAAAJk9ENXpH_p0FyVvlmuVkSqE9gYM', { action: 'submit' }).then(function (token) {
+            //console.log(token);
+            //mettre le token dans l'input de type hidden
+            document.getElementById("recaptcha_response").value = token;
+        });
+    });
+</script>
+{% endblock %}
+
 {% block body %}
-{% for flashError in app.flashes('verify_email_error') %}
-<div class="alert alert-danger" role="alert">{{ flashError }}</div>
+
+{% for label, messages in app.flashes %}
+{% for message in messages %}
+<div class="flash-{{ label }}">
+    {{ message }}
+</div>
+{% endfor %}
 {% endfor %}
 
 <h1>Register</h1>
@@ -13,10 +32,8 @@
 {{ form_row(registrationForm.email) }}
 {{ form_row(registrationForm.nom) }}
 {{ form_row(registrationForm.prenom) }}
-{{ form_row(registrationForm.plainPassword, {
-label: 'Password'
-}) }}
-
+{{ form_row(registrationForm.password, {label: 'Password'}) }}
+<input type="hidden" name="recaptcha_response" id="recaptcha_response">
 <button type="submit" class="btn">Register</button>
 {{ form_end(registrationForm) }}
 {% endblock %}

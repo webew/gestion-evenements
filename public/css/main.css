@@ -61,3 +61,6 @@ main section article div:nth-child(2){
 main section article div img{
     max-width: 100%;
 }
+.flash-danger{
+    background-color: red;
+}
