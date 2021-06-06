@@ -4,22 +4,33 @@
 {% endblock %}
 
 {% block body %}
-	<header>Les filtres</header>
-	<section>
-		{% for evenement in evenements %}
-			<article>
-				<div><img src="{{ asset( evenement.imageSrc ) }}" alt=""></div>
-				<div>
-					<h5>{{evenement.titre}}
-						le
-						{{evenement.date | date("d/m/Y")}}
-					</h5>
-					<p>{{evenement.lieu}}</p>
-					<p>{{evenement.description}}</p>
-					<p>Nombre de places total :
-						{{evenement.nbPlaces}}</p>
-				</div>
-			</article>
-		{% endfor %}
-	</section>
+<header>Les filtres</header>
+<section>
+	{% for evenement in evenements %}
+	<article>
+		<div><img src="{{ asset( evenement.image_src ) }}" alt=""></div>
+		<div>
+			<h5>{{evenement.titre}}
+				le
+				{{evenement.date | date("d/m/Y")}}
+			</h5>
+			<p>{{evenement.lieu}}</p>
+			<p>{{evenement.nom}}</p>
+			<p>{{evenement.description}}</p>
+			{% if app.user %}
+			<p>
+				{% if app.user.id == evenement.user_id %}
+				Vous êtes inscrit(e)
+				<a href="{{path('medesinscrire', {id: evenement.id})}}">Me désinscrire</a>
+				{% else %}
+				<a href="{{path('minscrire', {id: evenement.id})}}">M'inscrire</a>
+				{% endif %}
+			</p>
+			{% endif %}
+			<p>Nombre de places restantes :
+				{{evenement.nbRestantes}}</p>
+		</div>
+	</article>
+	{% endfor %}
+</section>
 {% endblock %}
